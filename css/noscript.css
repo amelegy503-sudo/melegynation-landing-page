@@ -1,0 +1,3 @@
+/* Loaded only when JavaScript is off: show every Approach step instead of tabs */
+.tabs{display:none}
+.tabpanel[hidden]{display:flex!important;margin-bottom:12px}

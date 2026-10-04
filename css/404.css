@@ -1,0 +1,10 @@
+@font-face{font-family:"Archivo";src:url("../fonts/archivo-latin-wdth-wght.woff2") format("woff2");font-weight:700 800;font-stretch:100% 125%;font-display:swap}
+@font-face{font-family:"Hanken Grotesk";src:url("../fonts/hanken-grotesk-latin-wght.woff2") format("woff2");font-weight:400 700;font-display:swap}
+html{background:#0A0A0A}
+body{margin:0;min-height:100vh;display:grid;place-items:center;padding:24px;background:#0A0A0A;color:#fff;font-family:"Hanken Grotesk",system-ui,sans-serif;font-size:1.0625rem;line-height:1.6}
+main{max-width:34rem}
+.brand{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-stretch:125%;font-weight:800;letter-spacing:.06em;margin:0 0 32px}
+h1{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-stretch:108%;font-weight:800;font-size:clamp(2.2rem,7vw,3.6rem);line-height:1;letter-spacing:-.02em;margin:0 0 16px}
+p{margin:0 0 28px;color:#9A9EA3}
+.btn{display:inline-flex;align-items:center;min-height:52px;padding:0 28px;background:#9CC4DE;color:#0A0A0A;border-radius:4px;font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-stretch:108%;font-weight:700;text-decoration:none}
+.btn:hover{background:#fff}
