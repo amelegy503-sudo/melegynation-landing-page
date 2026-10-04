@@ -87,8 +87,11 @@ button{cursor:pointer}
 .r-45{aspect-ratio:4/5}.r-43{aspect-ratio:4/3}.r-169{aspect-ratio:16/9}.r-219{aspect-ratio:21/9}.r-916{aspect-ratio:9/16}.r-11{aspect-ratio:1/1}
 
 /* ---------- Nav ---------- */
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:env(safe-area-inset-top,0px) var(--pad) 0;transition:background-color .25s,border-color .25s;border-bottom:1px solid transparent}
-.nav.is-solid{background:rgba(10,10,10,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom-color:var(--line-d)}
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:env(safe-area-inset-top,0px) var(--pad) 0;border-bottom:1px solid transparent}
+/* The bar background lives on ::before. backdrop-filter on .nav itself would turn it into the containing block
+   for the fixed full-screen mobile menu and shrink that menu to the height of the bar. */
+.nav::before{content:"";position:absolute;top:0;right:0;bottom:-1px;left:0;z-index:-1;border-bottom:1px solid var(--line-d);background:rgba(10,10,10,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);opacity:0;transition:opacity .25s;pointer-events:none}
+.nav.is-solid::before{opacity:1}
 .nav__in{max-width:var(--max);margin:0 auto;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;gap:24px}
 .brand{font-family:var(--f-display);font-stretch:125%;font-weight:800;font-size:1.15rem;letter-spacing:.06em;text-decoration:none}
 .nav__links{display:flex;align-items:center;gap:26px}
@@ -319,6 +322,12 @@ details.more[open] summary::after{content:"\2212"}
 .apply__status:empty{display:none}
 .apply__note{margin-top:14px;font-size:.88rem;color:var(--muted-d);max-width:62ch}
 
+/* external application state (shown instead of the on-page form when LINKS.application is set) */
+.apply-ext{border:1px solid var(--line-d);border-radius:var(--radius);background:var(--graphite);padding:clamp(28px,4vw,56px);max-width:960px;display:flex;flex-direction:column;gap:28px;align-items:flex-start}
+.apply-ext[hidden]{display:none}
+.apply-ext__text{font-family:var(--f-display);font-stretch:108%;font-weight:700;font-size:clamp(1.3rem,2.4vw,1.9rem);line-height:1.2;letter-spacing:-.01em;max-width:34ch}
+.apply-ext__note{font-size:.88rem;color:var(--muted-d);margin-top:-12px}
+
 /* ---------- 16. Final CTA ---------- */
 .final{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(36px,6vw,96px);align-items:center}
 .final h2{font-size:clamp(2.2rem,5.4vw,4.6rem);font-stretch:110%;max-width:14ch;line-height:1}
@@ -344,12 +353,13 @@ details.more[open] summary::after{content:"\2212"}
 
 /* ---------- Tablet ---------- */
 @media (max-width:960px){
-  .nav__links{position:fixed;inset:0;background:var(--ink);flex-direction:column;justify-content:center;align-items:flex-start;gap:8px;padding:calc(var(--nav-h) + 24px) var(--pad) 40px;visibility:hidden;opacity:0;transition:opacity .25s,visibility .25s}
+  .nav__links{position:fixed;top:0;right:0;bottom:0;left:0;width:100%;height:100vh;height:100dvh;z-index:1;background:var(--ink);flex-direction:column;justify-content:center;align-items:flex-start;gap:8px;padding:calc(var(--nav-h) + env(safe-area-inset-top,0px) + 24px) var(--pad) calc(40px + env(safe-area-inset-bottom,0px));overflow-y:auto;overscroll-behavior:contain;visibility:hidden;opacity:0;transition:opacity .25s,visibility .25s}
   .nav__links.is-open{visibility:visible;opacity:1}
   .nav__links a{font-family:var(--f-display);font-stretch:112%;font-weight:800;font-size:2rem;color:var(--white);padding:6px 0}
   .nav__links .btn{margin-top:20px;font-size:1rem;min-height:52px;padding:0 28px;font-stretch:108%}
   .burger{display:block;position:relative;z-index:2}
   .brand{position:relative;z-index:2}
+  html.menu-open,html.menu-open body{overflow:hidden}
   .hero{grid-template-columns:1fr;min-height:0}
   .hero__copy{padding:calc(var(--nav-h) + 36px) var(--pad) 36px;gap:24px}
   .hero__media{aspect-ratio:4/5}
@@ -370,6 +380,10 @@ details.more[open] summary::after{content:"\2212"}
   .tab[aria-selected="true"]{padding-left:2px;background:var(--ink);color:var(--white);border-color:var(--ink)}
   .sticky{display:block}
   .foot{padding-bottom:calc(96px + env(safe-area-inset-bottom,0px))}
+}
+
+@media (max-width:960px) and (max-height:560px){
+  .nav__links{justify-content:flex-start}
 }
 
 /* ---------- Phone ---------- */

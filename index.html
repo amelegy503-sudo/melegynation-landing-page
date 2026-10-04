@@ -46,7 +46,7 @@
       <a href="#about">About</a>
       <a href="#results">Results</a>
       <a href="#faq">FAQ</a>
-      <a class="btn btn--primary" href="#apply">Apply for Online Coaching</a>
+      <a class="btn btn--primary" href="#apply" data-link="application">Apply for Online Coaching</a>
     </nav>
   </div>
 </header>
@@ -64,7 +64,7 @@
     <p class="hero__sub">I build individualized training, nutrition, corrective and performance programs around the person, not a template. Online coaching for people who train, or want to train seriously, and aren't getting the results they should.</p>
     <p class="offer"><span class="offer__price">50 OMR<small> / month</small></span><span class="offer__what">Online Coaching. Training, nutrition, weekly check-ins and WhatsApp support.</span></p>
     <div class="btn-row">
-      <a class="btn btn--primary" href="#apply">Apply for Online Coaching</a>
+      <a class="btn btn--primary" href="#apply" data-link="application">Apply for Online Coaching</a>
       <a class="btn btn--ghost" href="#approach">See How It Works</a>
     </div>
     <ul class="hero__facts" aria-label="Credentials">
@@ -329,7 +329,7 @@
         <p>Online Coaching, everything above included.</p>
         <p><span class="tk">[CONFIRM: minimum term, cancellation terms and accepted payment methods]</span> OMR is the Omani rial.</p>
       </div>
-      <a class="btn btn--primary" href="#apply">Apply for Online Coaching</a>
+      <a class="btn btn--primary" href="#apply" data-link="application">Apply for Online Coaching</a>
     </div>
   </div>
 </section>
@@ -363,7 +363,7 @@
 
     <div class="midcta">
       <p>Online coaching is 50 OMR a month. If this is how you want to train, apply.</p>
-      <a class="btn btn--primary" href="#apply">Apply for Online Coaching</a>
+      <a class="btn btn--primary" href="#apply" data-link="application">Apply for Online Coaching</a>
     </div>
   </div>
 </section>
@@ -505,7 +505,7 @@
       <p class="lead muted">Four steps. No sales pressure, no forty-minute funnel.</p>
     </div>
     <ol class="steps">
-      <li><h3>Apply</h3><p>Fill in the application: goals, training history, injuries, schedule. <a href="#apply">Start here</a>.</p></li>
+      <li><h3>Apply</h3><p>Fill in the application: goals, training history, injuries, schedule. <a href="#apply" data-link="application">Start here</a>.</p></li>
       <li><h3>Consultation</h3><p>I review your application, then we talk. I check we're a fit and you find out how I work. <a href="#" data-link="calendly">Book a call</a> once you've applied.</p></li>
       <li><h3>Get your plan</h3><p>Your personalized training and nutrition plan, built from what we discussed.</p></li>
       <li><h3>Train, track, adjust</h3><p>Weekly check-ins, WhatsApp support, and revisions as you progress.</p></li>
@@ -542,14 +542,22 @@
   <div class="wrap">
     <div class="sec-head">
       <h2 class="h2 h2--wide" id="apply-h">Apply for online coaching</h2>
-      <p class="lead muted">A few questions, so I can see where you are and whether I'm the right coach. Quick to fill in, and every field helps me say yes or no honestly.</p>
+      <p class="lead muted" data-apply="placeholder">A few questions, so I can see where you are and whether I'm the right coach. Quick to fill in, and every field helps me say yes or no honestly.</p>
       <p class="pricetag">Online Coaching: 50 OMR / month</p>
     </div>
 
-    <!-- APPLICATION FORM
-         Set LINKS.application in js/main.js to your form endpoint ([APPLICATION_FORM_URL]).
-         Until then it validates but does NOT send, and says so on screen. -->
-    <form class="apply" id="apply-form" novalidate>
+    <!-- APPLICATION: two states, switched by LINKS.application in js/main.js
+         1) Not set  -> the on-page form below shows (data-apply="placeholder"). It validates but sends nothing and says so.
+         2) Set      -> the form is hidden and the panel below (data-apply="external") shows; every
+                        "Apply for Online Coaching" button opens that URL in a new tab.
+         No form platform is chosen for you: paste whichever application URL you decide to use. -->
+    <div class="apply-ext" data-apply="external" hidden>
+      <p class="apply-ext__text">Think we're a good fit? Apply below. I'll review your information and get back to you with the next step.</p>
+      <div class="btn-row"><a class="btn btn--primary" href="#apply" data-link="application">Apply for Online Coaching</a></div>
+      <p class="apply-ext__note">Opens in a new tab.</p>
+    </div>
+
+    <form class="apply" id="apply-form" data-apply="placeholder" novalidate>
       <fieldset>
         <legend>About you</legend>
         <div class="fgrid">
@@ -604,7 +612,7 @@
       <h2 id="final-h">Stop guessing. Train with a plan built around you.</h2>
       <p class="lead muted">Online coaching is 50 OMR a month. Tell me where you are and what's in the way, and I'll tell you honestly whether I'm the right coach for it.</p>
       <div class="btn-row">
-        <a class="btn btn--primary" href="#apply">Apply for Online Coaching</a>
+        <a class="btn btn--primary" href="#apply" data-link="application">Apply for Online Coaching</a>
       </div>
       <div class="contact">
         <a href="#" data-link="whatsapp">Question first? WhatsApp me</a>
@@ -644,7 +652,7 @@
   <p class="foot__legal">© <span id="year"></span> Abdelqader Elmelegy. Online coaching is not medical advice and does not replace assessment or treatment by a healthcare professional. If you have a diagnosed injury or medical condition, work alongside the appropriate healthcare professional and consult a doctor before starting any training or nutrition program.</p>
 </footer>
 
-<div class="sticky" id="sticky"><a class="btn btn--primary" href="#apply">Apply for Coaching</a></div>
+<div class="sticky" id="sticky"><a class="btn btn--primary" href="#apply" data-link="application">Apply for Coaching</a></div>
 
 <script src="js/main.js"></script>
 </body>
