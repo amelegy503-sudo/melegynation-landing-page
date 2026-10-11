@@ -33,7 +33,7 @@ The Tally-to-Calendly redirect is set up inside Tally, not on this site. The Tal
 - Footer and About links that aren't set yet (WhatsApp) are inert until you add them.
 
 ## Must do before going live
-1. **Results** (real proof only): overwrite `client-01/02-before/after.jpg` and `screenshot-01..03.jpg`, and replace the `[CLIENT ...]` and `[CLIENT TESTIMONIAL]` text. Get written permission first.
+1. **Results** (real proof only): overwrite `client-01/02-before/after.jpg` and `screenshot-01..03.jpg`. Get written permission first.
 2. **Photos**: replace `hero.jpg`, `about.jpg`, `athletic.jpg`, `coaching.jpg` and update each `alt` in `index.html`.
 3. **Links**: add `whatsapp` and `calendly`.
 4. **Domain tags** in the `<head>`: uncomment `canonical`, `og:url`, `og:image` and replace `[SITE_URL]`. After launch add a `Sitemap:` line to `robots.txt`.
